@@ -1,12 +1,28 @@
 {% extends "base.html" %}
 {% block title %}NFe Cxo{% endblock %}
 {% block content %}
-<form action="/nfe/" method="post">
-    <div class="form-group">
-        <label for="idnfe">GUIA CEGA DE RECEBIMENTO (XML NF-e)</label>
-        <input type="number" class="form-control" id="idnfe" name="n-idnfe" placeholder="ID NFe" aria-describedby="idnfe-help">
-        <small id="idnfe-help" class="form-text text-muted">Informe a chave de acesso da NFe</small>
+<div class="row justify-content-md-center align-items-center m-5">
+    <div class="col">
+        <form action="/nfe/" method="post">
+            <div class="form-group">
+                <label for="idnfe"><h3>GUIA CEGA DE RECEBIMENTO (XML NF-e)</h3></label>
+                <input type="number" class="form-control" id="idnfe" name="idnfe" placeholder="ID NFe" aria-describedby="idnfe-help">
+                <small id="idnfe-help" class="form-text text-muted">Informe a chave de acesso da NFe</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Confirmar</button>
+        </form>
     </div>
-    <button type="submit" class="btn btn-primary">Confirmar</button>
-</form>
+</div>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="row alert alert-danger alert-dismissible fade show m-5" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 {% endblock %}

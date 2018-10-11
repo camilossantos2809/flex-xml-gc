@@ -22,9 +22,7 @@ def get_encoded_nfe_gzip(idnfe):
         with conn.cursor() as curs:
             curs.execute(
                 "select xmls_texto from xmlnfe where xmls_idnfe=%s", (idnfe,))
-            encoded_str = curs.fetchone()[0]
-    conn.close()
-    return encoded_str
+            return curs.fetchone()
 
 
 def encoded_text_to_binary(encoded_str, path):
