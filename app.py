@@ -2,7 +2,7 @@ import gzip
 import shutil
 import os
 
-from flask import Flask, flash, redirect, render_template, request
+from flask import Flask, flash, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 from decoder import (encoded_text_to_binary, get_data_of_nfe,
@@ -22,18 +22,24 @@ db = SQLAlchemy(app)
 class Config(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ip = db.Column(db.String, nullable=False)
-    # porta = db.Column(db.Integer, nullable=False)
+    porta = db.Column(db.Integer, nullable=False)
+    database = db.Column(db.String, nullable=False)
+    user = db.Column(db.String, nullable=False)
+    password = db.Column(db.String, nullable=False)
 
     def __repr__(self):
-        return f"Config(id={self.id},ip={self.ip})"
-
-
-if not os.path.exists("config.db"):
-    db.create_all()
+        return f"Config(id={self.id},ip={self.ip},database={self.database})"
 
 
 @app.route("/", methods=["GET"])
 def init():
+    # if not os.path.exists("config.db"):
+    #     flash("Arquivo de configuração não localizado")
+    #     db.create_all()
+    #     return redirect(url_for("config"))
+    if not Config.query.filter_by(id=1).first():
+        flash("Não foram localizados nenhum registro de configuração")
+        return redirect(url_for("config"))
     return render_template('index.html')
 
 
@@ -68,9 +74,16 @@ def nfe():
 
 @app.route("/config/", methods=["POST", "GET"])
 def config():
+    data = Config.query.filter_by(id=1).first()
+
     if request.method == 'POST':
-        new_config = Config.query.filter_by(id=1).first()
+        new_config = data or Config()
+        new_config.id = 1
         new_config.ip = request.form["ip"]
+        new_config.porta = request.form["porta"]
+        new_config.database = request.form["database"]
+        new_config.user = request.form["user"]
+        new_config.password = request.form["password"]
 
         db.session.add(new_config)
         db.session.commit()
@@ -78,7 +91,6 @@ def config():
         flash("Configuração salva no banco de dados!")
         return redirect("/config/")
 
-    data = Config.query.filter_by(id=1).first()
     return render_template("config.html", data=data)
 
 

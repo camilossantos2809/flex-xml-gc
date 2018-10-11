@@ -18,7 +18,7 @@ def get_encoded_nfe_gzip(idnfe, config):
     '''Consulta ID da NFE no banco de dados'''
 
     conn = psycopg2.connect(
-        f"dbname=erp user=postgres password=123456 host={config.ip}")
+        f"dbname={config.database} user={config.user} password={config.password} host={config.ip} port={config.porta}")
     with conn:
         with conn.cursor() as curs:
             curs.execute(

@@ -7,7 +7,8 @@
         <form action="/config/" method="post">
             <ul class="nav nav-tabs" id="tab-config" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#banco-dados" role="tab" aria-controls="banco-dados" aria-selected="true">Banco de dados</a>
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#banco-dados" role="tab"
+                        aria-controls="banco-dados" aria-selected="true">Banco de dados</a>
                 </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
@@ -18,34 +19,62 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="ip">IP</label>
-                            <input type="text" class="form-control" id="ip" name="ip" placeholder="IP Banco de dados" value="{{data.ip}}" aria-describedby="ip-help" required>
+                            <input type="text" class="form-control" id="ip" name="ip" placeholder="IP Banco de dados"
+                                value="{{data.ip}}" aria-describedby="ip-help" required>
                             <small id="ip-help" class="form-text text-muted">Informe o IP do servidor do banco de dados</small>
                             <div class="invalid-feedback">Campo obrigatório</div>
                         </div>
                         <div class="form-group col-md-6">
-                                <label for="porta">Porta</label>
-                                <input type="number" class="form-control" id="porta" name="porta" placeholder="Porta" value="{{data.porta}}" aria-describedby="porta-help" required>
-                                <small id="porta-help" class="form-text text-muted">Informe o número da porta do serviço do BD</small>
-                                <div class="invalid-feedback">Campo obrigatório</div>
-                            </div>
+                            <label for="porta">Porta</label>
+                            <input type="number" class="form-control" id="porta" name="porta" placeholder="Porta" value="{{data.porta}}"
+                                aria-describedby="porta-help" required>
+                            <small id="porta-help" class="form-text text-muted">Informe o número da porta do serviço do
+                                BD</small>
+                            <div class="invalid-feedback">Campo obrigatório</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="database">Nome Database</label>
+                            <input type="text" class="form-control" id="database" name="database" placeholder="Nome do database"
+                                value="{{data.database}}" aria-describedby="database-help" required>
+                            <small id="database-help" class="form-text text-muted">Informe o nome do database</small>
+                            <div class="invalid-feedback">Campo obrigatório</div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="user">Usuário</label>
+                            <input type="text" class="form-control" id="user" name="user" placeholder="Usuário" value="{{data.user}}"
+                                aria-describedby="user-help" required>
+                            <small id="user-help" class="form-text text-muted">Informe o usuário para conexão</small>
+                            <div class="invalid-feedback">Campo obrigatório</div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="password">Senha</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Senha"
+                                value="{{data.password}}" aria-describedby="password-help" required>
+                            <small id="password-help" class="form-text text-muted">Informe a senha</small>
+                            <div class="invalid-feedback">Campo obrigatório</div>
+                        </div>
                     </div>
                 </div>
-                <!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div> -->
             </div>
+            <!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div> -->
             <button type="submit" class="btn btn-primary">Gravar</button>
-        </form>
     </div>
+    </form>
 </div>
+</div>
+
 {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for message in messages %}
-        <div class="row alert alert-info alert-dismissible fade show m-5" role="alert">
-            {{ message }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        {% endfor %}
-    {% endif %}
+{% if messages %}
+{% for message in messages %}
+<div class="row alert alert-info alert-dismissible fade show m-5" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+{% endif %}
 {% endwith %}
 {% endblock %}
