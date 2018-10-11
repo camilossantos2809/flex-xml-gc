@@ -1,8 +1,6 @@
 import gzip
 import shutil
-import json
 import os
-
 
 from flask import Flask, flash, redirect, render_template, request
 from flask_sqlalchemy import SQLAlchemy
