@@ -14,6 +14,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///config.db'
+app.config['TRAP_HTTP_EXCEPTIONS'] = True
 app.secret_key = '1234'
 db = SQLAlchemy(app)
 
@@ -31,9 +32,20 @@ if not os.path.exists("config.db"):
     db.create_all()
 
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def init():
     return render_template('index.html')
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    db.session.rollback()
+    return render_template("500.html"), 500
 
 
 @app.route("/nfe/", methods=['POST', 'GET'])
