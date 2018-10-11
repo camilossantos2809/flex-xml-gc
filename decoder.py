@@ -14,10 +14,11 @@ class Nfe:
     dados_nfe = {}
 
 
-def get_encoded_nfe_gzip(idnfe):
+def get_encoded_nfe_gzip(idnfe, config):
     '''Consulta ID da NFE no banco de dados'''
+
     conn = psycopg2.connect(
-        "dbname=erp_testes user=postgres password=rp1064 host=localhost")
+        f"dbname=erp user=postgres password=123456 host={config.ip}")
     with conn:
         with conn.cursor() as curs:
             curs.execute(

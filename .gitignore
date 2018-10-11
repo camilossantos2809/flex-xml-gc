@@ -106,3 +106,4 @@ venv.bak/
 arqxml.tar.gz
 arqxml.xml
 .vscode/
+config.db

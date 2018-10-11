@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Guia Cega - Config{% endblock %}
+{% block content %}
+<h3>Configurações</h3>
+<div class="row justify-content-md-center align-items-center m-5">
+    <div class="col">
+        <form action="/config/" method="post">
+            <ul class="nav nav-tabs" id="tab-config" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#banco-dados" role="tab" aria-controls="banco-dados" aria-selected="true">Banco de dados</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                </li> -->
+            </ul>
+            <div class="tab-content" id="my-tab-content">
+                <div class="tab-pane fade show active" id="banco-dados" role="tabpanel" aria-labelledby="banco-dados-tab">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="ip">IP</label>
+                            <input type="text" class="form-control" id="ip" name="ip" placeholder="IP Banco de dados" value="{{data.ip}}" aria-describedby="ip-help" required>
+                            <small id="ip-help" class="form-text text-muted">Informe o IP do servidor do banco de dados</small>
+                            <div class="invalid-feedback">Campo obrigatório</div>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label for="porta">Porta</label>
+                                <input type="number" class="form-control" id="porta" name="porta" placeholder="Porta" value="{{data.porta}}" aria-describedby="porta-help" required>
+                                <small id="porta-help" class="form-text text-muted">Informe o número da porta do serviço do BD</small>
+                                <div class="invalid-feedback">Campo obrigatório</div>
+                            </div>
+                    </div>
+                </div>
+                <!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div> -->
+            </div>
+            <button type="submit" class="btn btn-primary">Gravar</button>
+        </form>
+    </div>
+</div>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="row alert alert-info alert-dismissible fade show m-5" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+{% endblock %}
