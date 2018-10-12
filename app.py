@@ -4,6 +4,8 @@ import os
 
 from flask import Flask, flash, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
 
 from decoder import (encoded_text_to_binary, get_data_of_nfe,
                      get_encoded_nfe_gzip)
@@ -15,8 +17,11 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///config.db'
 app.config['TRAP_HTTP_EXCEPTIONS'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = '1234'
+
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 
 class Config(db.Model):
@@ -33,10 +38,6 @@ class Config(db.Model):
 
 @app.route("/", methods=["GET"])
 def init():
-    # if not os.path.exists("config.db"):
-    #     flash("Arquivo de configuração não localizado")
-    #     db.create_all()
-    #     return redirect(url_for("config"))
     if not Config.query.filter_by(id=1).first():
         flash("Não foram localizados nenhum registro de configuração")
         return redirect(url_for("config"))
@@ -95,4 +96,7 @@ def config():
 
 
 if __name__ == '__main__':
+    from flask_migrate import upgrade
+    with app.app_context():
+        upgrade()
     app.run(debug=True)

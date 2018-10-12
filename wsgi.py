@@ -1,6 +1,8 @@
 import platform
+import os
+
 if platform.system() == 'Windows':
-    import os
+
     import sys
 
     activate_this = f'{os.path.dirname(__file__)}/venv/Scripts/activate_this.py'
@@ -11,6 +13,7 @@ if platform.system() == 'Windows':
 
 
 from app import app as application
+
 
 if __name__ == '__main__':
     application.run()
