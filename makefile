@@ -3,8 +3,14 @@
 run:
 	flask run
 
+# Efetua a criação inicial do banco de dados.
+# Executar make upgrade para criar as tabelas conforme última migração
 migrate:
 	flask db migrate
+
+# Cria o schema contido nos arquivos de migração do alembic
+upgrade:
+	flask db upgrade
 
 git-log:
 	git log --graph --oneline --decorate -n 5
