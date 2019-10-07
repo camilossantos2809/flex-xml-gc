@@ -10,6 +10,7 @@ Para criação do ambiente virtual utilizar o virtualenv:
 Acessar o ambiente virtual.
 
 **Linux:** `source venv/bin/activate`
+
 **Windows:** `venv\Scripts\activate.bat`
 
 Realizar a instalação das dependências: `pip install -r requirements.txt`
@@ -24,9 +25,11 @@ Executar o webserver utilizado em desenvolvimento para testar a instalação
     flask run
  Não retornando nenhum erro no comando acima a aplicação poderá ser acessada no navegador no endereço http://localhost:5000
 
+
 **WEBSERVER PRODUÇÃO**
+
 No caso do GNU/Linux poderá ser utilizado qualquer webserver compatível com o wsgi como o Nginx ou Apache2.
 
-No Windows é necessário utilizar o Apache Lounge e instalar o mod_wsgi.
+No Windows é necessário utilizar o Apache Lounge e instalar o mod_wsgi. Para instalação do mod_wsgi no Windows é necessária a instalação no Visual Studio C++ Build Tools incluindo Windows SDK 8 e 10.
 
 No projeto em `docs/examples` existem alguns exemplos de configuração para o Apache.
