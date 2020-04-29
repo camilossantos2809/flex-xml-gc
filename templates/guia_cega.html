@@ -8,17 +8,23 @@
 <table class="table table-striped table-sm table-responsive-md">
     <thead class="thead-light">
         <tr>
-            <th>Barras</th>
-            <th>Descrição</th>
-            <th>Qtde</th>
+            <th scope="col" class="col-auto">Barras</th>
+            <th scope="col" class="col-auto">Descrição</th>
+            <th scope="col" class="col-auto text-center">Qtde</th>
+            <th scope="col" class="col-auto text-center">Lote</th>
+            <th scope="col" class="col-auto text-center">Fab.</th>
+            <th scope="col" class="col-auto text-center">Validade</th>
         </tr>
     </thead>
     <tbody>
         {% for produto in produtos %}
         <tr>
             <td>{{produto[0]}}</td>
-            <td>{{produto[1]}}</td>
-            <td></td>
+            <td class="descricao">{{produto[1]}}</td>
+            <td class="numero-escrita">___________</td>
+            <td class="numero-escrita">___________</td>
+            <td class="data-escrita align-bottom">______/______/______</td>
+            <td class="data-escrita align-bottom">______/______/______</td>
         </tr>
         {% endfor %}
 

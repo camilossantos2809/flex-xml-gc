@@ -1,0 +1,16 @@
+table.table {
+  width: auto !important;
+}
+
+td.descricao {
+    width: 100%;
+    white-space: nowrap;
+}
+
+td.numero-escrita {
+    opacity: 0;
+}
+
+td.data-escrita {
+    padding-bottom: 0;
+}
