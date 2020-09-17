@@ -28,8 +28,13 @@ Executar o webserver utilizado em desenvolvimento para testar a instalação
 
 **WEBSERVER PRODUÇÃO**
 
+**GNU/Linux**
 No caso do GNU/Linux poderá ser utilizado qualquer webserver compatível com o wsgi como o Nginx ou Apache2.
 
-No Windows é necessário utilizar o Apache Lounge e instalar o mod_wsgi. Para instalação do mod_wsgi no Windows é necessária a instalação no Visual Studio C++ Build Tools incluindo Windows SDK 8 e 10.
+**Windows**
+No Windows é necessário utilizar o Apache Lounge (https://www.apachelounge.com/) e instalar o mod_wsgi (`pip install mod_wsgi`).
+Para instalação do mod_wsgi no Windows é necessária a instalação no Visual Studio C++ Build Tools (https://www.visualstudio.com/downloads) incluindo Windows SDK 8 e 10.
+
+Para identificar os valores a ser informados na configuração do apache, executar: `mod_wsgi-express module-config`.
 
 No projeto em `docs/examples` existem alguns exemplos de configuração para o Apache.
